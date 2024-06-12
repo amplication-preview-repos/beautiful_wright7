@@ -1,0 +1,52 @@
+datasource db {
+  provider = "mongodb"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model InstagramAccessToken {
+  accessToken    String?
+  createdAt      DateTime  @default(now())
+  expirationDate DateTime?
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId
+  updatedAt      DateTime  @updatedAt
+}
+
+model LinkedInAccessToken {
+  accessToken    String?
+  createdAt      DateTime  @default(now())
+  expirationDate DateTime?
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId
+  updatedAt      DateTime  @updatedAt
+}
+
+model FacebookAccessToken {
+  accessToken    String?
+  createdAt      DateTime  @default(now())
+  expirationDate DateTime?
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId
+  updatedAt      DateTime  @updatedAt
+}
+
+model TwitterAccessToken {
+  accessToken    String?
+  createdAt      DateTime  @default(now())
+  expirationDate DateTime?
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId
+  updatedAt      DateTime  @updatedAt
+}
+
+model User {
+  createdAt DateTime @default(now())
+  email     String?  @unique
+  firstName String?
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  lastName  String?
+  password  String
+  roles     Json
+  updatedAt DateTime @updatedAt
+  username  String   @unique
+}
